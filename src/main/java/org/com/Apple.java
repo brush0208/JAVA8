@@ -2,6 +2,7 @@ package org.com;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class Apple {
@@ -11,6 +12,14 @@ public class Apple {
     public Apple(String color, Integer wight) {
         this.color = color;
         this.wight = wight;
+    }
+
+    @Override
+    public String toString() {
+        return "Apple{" +
+                "color='" + color + '\'' +
+                ", wight=" + wight +
+                '}';
     }
 
     public String getColor() {
@@ -49,4 +58,12 @@ public class Apple {
         }
         return list;
     }
+    private class Banana{
+        public void setWight(Integer a){}
+
+        public void test(){
+            Apple.this.getWight();
+        }
+    }
+
 }
