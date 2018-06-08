@@ -52,9 +52,6 @@ public class Apple {
         {
             if(formt.test(apple))
                 list.add(apple);
-
-
-
         }
         return list;
     }
@@ -66,4 +63,8 @@ public class Apple {
         }
     }
 
+    public static void main(String[] args){
+        Integer integer = Integer.valueOf(null);
+        System.out.println(integer);
+    }
 }

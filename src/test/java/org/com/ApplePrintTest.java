@@ -30,7 +30,8 @@ public class ApplePrintTest {
     {
 
 
-        Apple.prettyPrintApple(inventory,new ApplePrintFormtColor());
+        ApplePrintFormtColor applePrintFormtColor = new ApplePrintFormtColor();
+        Apple.prettyPrintApple(inventory,applePrintFormtColor::accept);
     }
 
     @Test

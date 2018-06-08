@@ -5,15 +5,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.*;
 
 public class MenuTest {
 
@@ -53,8 +51,8 @@ public class MenuTest {
                     map(str -> str.split("")).
                       map(str -> Arrays.stream(str)).
                  collect(Collectors.toList());
-      //  List<String> collect = stream.map(word -> word.split(""))
-               // .flatMap(Arrays::stream).distinct().collect(toList());
+       List<String> collect = stream.map(word -> word.split(""))
+                .flatMap(Arrays::stream).distinct().collect(toList());
         System.out.println(streamList);
 
     }
@@ -73,7 +71,27 @@ public class MenuTest {
     @Test
     public void testReduce()
     {
-        Integer reduce = menu.stream().map(dash -> 1).reduce(0, Integer::sum);
-        System.out.println(reduce);
+      //  Integer reduce = menu.stream().map(dash -> 1).reduce(0, Integer::sum);
+        //System.out.println(reduce);
+        int h=100;
+        //Predicate
+        h^=(h>>>20)^(h>>>12);
+        System.out.println("h:"+h);
+        int x= h^(h>>>7)^(h>>>4);
+        System.out.println("x:"+x);
+
+    }
+
+    @Test
+    public void testGroupBy()
+    {
+        menu.stream().collect(groupingBy(Dash::getName));
+    }
+    @Test
+    public void testCollectingAndThen()
+    {
+        Map<Dash.Type, Dash> collect = menu.stream().collect(groupingBy(Dash::getType
+                , collectingAndThen(maxBy(Comparator.comparingInt(Dash::getCalories)), Optional::get)));
+        System.out.println(collect);
     }
 }
